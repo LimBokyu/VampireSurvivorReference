@@ -64,7 +64,7 @@ public class EXPObject : MonoBehaviour
 
     private void PlayerGetEXP()
     {
-        lerp = Mathf.Clamp01(lerp +  (2 * Time.deltaTime));
+        lerp = Mathf.Clamp01(lerp + (2 * Time.deltaTime));
         transform.position = Vector3.Lerp(firstPosition, player.gameObject.transform.position, lerp);
     }
 

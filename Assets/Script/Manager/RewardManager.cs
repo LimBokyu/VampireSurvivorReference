@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
@@ -31,6 +33,13 @@ public class RewardManager : MonoBehaviour
 
     private List<GameObject> rewardCards = new List<GameObject>();
 
+
+    private List<Reward> rewards = new List<Reward>();
+
+    private Reward left;
+    private Reward middle;
+    private Reward right;
+
 private void Awake()
     {
         lowLevelRewards = new List<Reward>();
@@ -41,6 +50,10 @@ private void Awake()
         rewardCards.Add(leftReward);
         rewardCards.Add(middleReward);
         rewardCards.Add(rightReward);
+
+        rewards.Add(left);
+        rewards.Add(middle);
+        rewards.Add(right);
     }
 
     public void GetRewardList(List<Reward> list, int grade)
@@ -66,32 +79,44 @@ private void Awake()
         //Debug.Log("ShowReward");
 
         List<Reward> list = new List<Reward>();
-
-        int leftgrade = Random.Range(0, 3);
-        int middlegrade = Random.Range(0, 3);
-        int rightgrade = Random.Range(0, 3);
-
-        int[] grades = { leftgrade, middlegrade, rightgrade };
-        
-        for(int index=0; index < grades.Length; index++)
+        while (true)
         {
-            switch (grades[index])
+            int leftgrade = Random.Range(0, 3);
+            int middlegrade = Random.Range(0, 3);
+            int rightgrade = Random.Range(0, 3);
+
+            int[] grades = { leftgrade, middlegrade, rightgrade };
+
+            for (int index = 0; index < grades.Length; index++)
             {
-                case 0:
-                    list = lowLevelRewards;
-                    break;
-                case 1:
-                    list = middleLevelRewards;
-                    break;
-                case 2:
-                    list = highLevelRewards;
-                    break;
+                switch (grades[index])
+                {
+                    case 0:
+                        list = lowLevelRewards;
+                        break;
+                    case 1:
+                        list = middleLevelRewards;
+                        break;
+                    case 2:
+                        list = highLevelRewards;
+                        break;
+                }
+
+                int random = Random.Range(0, list.Count);
+
+                rewards[index] = list[random];
             }
 
-            int random = Random.Range(0, list.Count);
-
-            rewardCards[index].GetComponentInChildren<RewardCard>().GetReward(list[random]);
+            bool hasDuplicates = rewards.Count != rewards.Distinct().Count();
+            if (hasDuplicates)
+                continue;
+            else
+                break;
         }
-       
+
+        for(int index=0; index < rewards.Count; index++)
+        {
+            rewardCards[index].GetComponentInChildren<RewardCard>().GetReward(rewards[index]);
+        }
     }
 }

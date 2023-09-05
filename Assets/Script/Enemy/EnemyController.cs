@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Text;
+using Unity.VisualScripting;
 
+enum EnemyType { A, B, C, D }
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent navAgent;
@@ -17,13 +19,35 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;
 
+    [SerializeField]
+    private EnemyType type;
+
     private void Awake()
     {
         navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        enemyVital = 15;
+        SetVital();
 
         anim.SetBool("isMoving", true);
+    }
+
+    private void SetVital()
+    {
+        switch (type)
+        {
+            case EnemyType.A:
+                enemyVital = 10 + (GameManager.Instance.GetRound() * 5);
+                break;
+            case EnemyType.B:
+                enemyVital = 15 + (GameManager.Instance.GetRound() * 8);
+                break;
+            case EnemyType.C:
+                enemyVital = 30 + (GameManager.Instance.GetRound() * 10);
+                break;
+            case EnemyType.D:
+                enemyVital = (10 + (GameManager.Instance.GetRound() * 5))/2;
+                break;
+        }
     }
 
     private void LateUpdate()

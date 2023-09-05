@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerAutoAttack autoAttack = null;
 
+    private CharacterController controller = null;
+
     private PlayerState state;
     private Vector3 mousePos;
     private Rigidbody rigid;
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
         //anim = GetComponent<Animator>();
         anim = GetComponentInChildren<Animator>();
         autoAttack = GetComponent<PlayerAutoAttack>();
+        controller = GetComponent<CharacterController>();
 
         GameManager.Instance.SetPlayerController(this);
 
@@ -145,8 +148,11 @@ public class PlayerController : MonoBehaviour
         if(moveVec != Vector3.zero)
             transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.5f);
 
-        transform.position += moveVec * moveSpeed * Time.deltaTime;
-        //rigid.AddForce(moveVec * moveSpeed, ForceMode.Acceleration);
+        //float maxSpeed = 10f;
+        //if(rigid.velocity.magnitude > maxSpeed)
+        //    rigid.velocity = rigid.velocity.normalized * maxSpeed;
+
+        controller.Move(moveVec * moveSpeed * Time.deltaTime);
     }
 
     private void PlayerDead()

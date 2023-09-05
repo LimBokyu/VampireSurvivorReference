@@ -74,8 +74,24 @@ public class PlayerAutoAttack : MonoBehaviour
         }
         else
         {
+            float nearDis = Vector3.Distance(col[0].transform.position, transform.position);
+            int nearNum = 0;
+            for(int index=1; index<col.Length; index++)
+            {
+                float compareDis = Vector3.Distance(col[index].transform.position, transform.position);
+                if (nearDis > compareDis)
+                {
+                    nearDis = compareDis;
+                    nearNum = index;
+                }
+                else
+                    continue;
+            }
+
             inRange = true;
-            shootDir = (col[0].transform.position - transform.position).normalized;
+
+            Vector3 vec = (col[nearNum].transform.position - transform.position).normalized;
+            shootDir = new Vector3(vec.x, 0f, vec.z);
         }
     }
 

@@ -9,15 +9,30 @@ public class EnemySpawner : MonoBehaviour
     private Transform[] spawnPoint;
 
     [SerializeField]
-    private GameObject enemyObject;
+    private GameObject enemyA;
+
+    [SerializeField]
+    private GameObject enemyB;
+
+    [SerializeField]
+    private GameObject enemyC;
+
+    [SerializeField]
+    private GameObject enemyD;
+
+    private List<GameObject> enemyList = new List<GameObject>();
 
     private Coroutine spawnCoroutine;
     private YieldInstruction spawnTimer = new WaitForSeconds(0.5f);
 
     private StringBuilder sb = new StringBuilder();
 
-    private void Start()
+    private int spawnCount = 0;
+    private int spawnType = 0;
+
+    private void Awake()
     {
+        SetEnemyList();
         spawnCoroutine = StartCoroutine(EnemySpawn());
     }
 
@@ -27,6 +42,20 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
         }
+    }
+
+    public void StartSpawn()
+    {
+        
+    }
+
+    private void SetEnemyList()
+    {
+        enemyList.Clear();
+        enemyList.Add(enemyA);
+        enemyList.Add(enemyB);
+        enemyList.Add(enemyC);
+        enemyList.Add(enemyD);
     }
 
     public void SpawnEnemy()
@@ -39,7 +68,17 @@ public class EnemySpawner : MonoBehaviour
         //Debug.Log(sb);
         //sb.Clear();
 
-        Instantiate(enemyObject, spawnPoint[random].transform.position, Quaternion.identity);
+        if(spawnCount >= 40)
+        {
+            spawnCount = 0;
+            spawnType++;
+            GameManager.Instance.NextRound();
+            if (spawnType >= 4)
+                spawnType = 0;
+        }
+
+        spawnCount++;
+        Instantiate(enemyList[spawnType], spawnPoint[random].transform.position, Quaternion.identity);
     }
 
     private IEnumerator EnemySpawn()

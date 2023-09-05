@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     private int round = 1;
 
+    private int[] killCounts = new int[] { 0,0,0,0 };
+
     private void Awake()
     {
         if (instance == null)
@@ -74,5 +76,20 @@ public class GameManager : MonoBehaviour
     {
         levelUpUI.SetActive(false);
         timeManager.SetTimeScale(false);
+    }
+
+    public int GetRound()
+    {
+        return round;
+    }
+
+    public void NextRound()
+    {
+        round++;
+    }
+
+    public void InCreaseKillCount(int typeNum)
+    {
+        killCounts[typeNum]++;
     }
 }
