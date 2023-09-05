@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 
@@ -29,11 +27,9 @@ public class RewardManager : MonoBehaviour
     [SerializeField]
     private GameObject rightReward;
 
-    private StringBuilder sb = new StringBuilder();
+    private StringBuilder debug = new StringBuilder();
 
     private List<GameObject> rewardCards = new List<GameObject>();
-
-
     private List<Reward> rewards = new List<Reward>();
 
     private Reward left;
@@ -74,16 +70,21 @@ private void Awake()
         }
     }
 
+    private int RandomGrade()
+    {
+        int randomleft = Random.Range(0, 100);
+
+        return randomleft == 99 ? 2 : randomleft < 99 && randomleft > 75 ? 1 : 0;
+    }
+
     public void ShowReward()
     {
-        //Debug.Log("ShowReward");
-
         List<Reward> list = new List<Reward>();
         while (true)
         {
-            int leftgrade = Random.Range(0, 3);
-            int middlegrade = Random.Range(0, 3);
-            int rightgrade = Random.Range(0, 3);
+            int leftgrade = RandomGrade();
+            int middlegrade = RandomGrade();
+            int rightgrade = RandomGrade();
 
             int[] grades = { leftgrade, middlegrade, rightgrade };
 
