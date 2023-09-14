@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class OptionManager : MonoBehaviour
 {
-    private void Awake()
-    {
-        
-    }
+
+    [SerializeField]
+    private GameObject options;
 
     public void ShowOptions()
     {
-
+        options.SetActive(true);
     }
 }

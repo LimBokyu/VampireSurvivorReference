@@ -16,11 +16,15 @@ public class RewardCard : MonoBehaviour
 
     private Color rewardColor = Color.white;
 
+    [SerializeField]
+    private RewardPosition rewardPosition;
+
     private Image image;
 
     private void Awake()
     {
         image = GetComponent<Image>();
+        GameManager.Instance.GetRewardManager().SetRewardPosition(gameObject, rewardPosition);
     }
 
     public void GetReward(Reward reward)

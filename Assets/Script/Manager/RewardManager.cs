@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
+public enum RewardPosition { left, middle, right }
 public class RewardManager : MonoBehaviour
 {
     [SerializeField]
@@ -36,13 +38,17 @@ public class RewardManager : MonoBehaviour
     private Reward middle;
     private Reward right;
 
-private void Awake()
+    private RewardPosition rewardPosition;
+
+    private void Awake()
     {
         lowLevelRewards = new List<Reward>();
         middleLevelRewards = new List<Reward>();
         highLevelRewards = new List<Reward>();
+    }
 
-
+    public void RewardListSetting()
+    {
         rewardCards.Add(leftReward);
         rewardCards.Add(middleReward);
         rewardCards.Add(rightReward);
@@ -50,6 +56,24 @@ private void Awake()
         rewards.Add(left);
         rewards.Add(middle);
         rewards.Add(right);
+    }
+
+    public void SetRewardPosition(GameObject reward, RewardPosition position)
+    {
+        switch (position)
+        {
+            case RewardPosition.left:
+                leftReward = reward;
+                break;
+            case RewardPosition.middle:
+                middleReward = reward;
+                break;
+            case RewardPosition.right:
+                rightReward = reward;
+                break;
+            default:
+                break;
+        }
     }
 
     public void GetRewardList(List<Reward> list, int grade)
@@ -117,7 +141,7 @@ private void Awake()
 
         for(int index=0; index < rewards.Count; index++)
         {
-            rewardCards[index].GetComponentInChildren<RewardCard>().GetReward(rewards[index]);
+            rewardCards[index].GetComponent<RewardCard>().GetReward(rewards[index]);
         }
     }
 }

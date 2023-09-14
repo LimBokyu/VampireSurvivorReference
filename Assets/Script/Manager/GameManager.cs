@@ -14,7 +14,13 @@ public class GameManager : MonoBehaviour
     private RewardManager rewardManager;
 
     [SerializeField]
+    private OptionManager optionManager;
+
+    [SerializeField]
     private GameObject levelUpUI;
+
+    [SerializeField]
+    private RewardList rewardList;
 
     private int round = 1;
 
@@ -41,6 +47,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            optionManager.ShowOptions();
+        }
+    }
+
     public void SetTimeManager(TimeManager timeManager)
     {
         this.timeManager = timeManager;
@@ -55,6 +69,22 @@ public class GameManager : MonoBehaviour
     {
         return player;
     }
+
+    public void SetLevelUpUI(GameObject obj)
+    {
+        levelUpUI = obj;
+    }
+
+    public void SetRewardList()
+    {
+        rewardManager.RewardListSetting();
+    }
+
+    public void UpdateRewardList()
+    {
+        rewardList.UpdateList();
+    }
+
 
     public void TimeControll(bool stopTime)
     {

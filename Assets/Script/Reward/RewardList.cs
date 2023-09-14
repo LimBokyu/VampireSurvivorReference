@@ -17,9 +17,6 @@ public class RewardList : MonoBehaviour
     private void Awake()
     {
         SetRewardList();
-        GameManager.Instance.GetRewardManager().GetRewardList(lowLevelRewards, 0);
-        GameManager.Instance.GetRewardManager().GetRewardList(middleLevelRewards, 1);
-        GameManager.Instance.GetRewardManager().GetRewardList(highLevelRewards, 2);
     }
 
     private void SetRewardList()
@@ -27,6 +24,13 @@ public class RewardList : MonoBehaviour
         SetLowLevelRewardList();
         SetMiddleLevelRewardList();
         SetHighLevelRewardList();
+    }
+
+    public void UpdateList()
+    {
+        GameManager.Instance.GetRewardManager().GetRewardList(lowLevelRewards, 0);
+        GameManager.Instance.GetRewardManager().GetRewardList(middleLevelRewards, 1);
+        GameManager.Instance.GetRewardManager().GetRewardList(highLevelRewards, 2);
     }
 
 
