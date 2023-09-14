@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Text;
 using Unity.VisualScripting;
+using Cinemachine.Utility;
 
 enum EnemyType { A, B, C, D }
 public class EnemyController : MonoBehaviour
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         SetVital();
 
+        navAgent.updateRotation = false;
         anim.SetBool("isMoving", true);
     }
 
@@ -53,6 +55,10 @@ public class EnemyController : MonoBehaviour
     private void LateUpdate()
     {
         navAgent.SetDestination(GameManager.Instance.GetPlayer().transform.position);
+        Vector3 tempVec = (transform.position - GameManager.Instance.GetPlayer().transform.position).normalized;
+        Vector3 dir = new Vector3(tempVec.x, 0f, tempVec.z);
+        transform.forward = -dir;
+            
     }
 
     public void GetDamaged(int damage)

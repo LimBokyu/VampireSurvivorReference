@@ -51,6 +51,7 @@ public class RewardCard : MonoBehaviour
     public void TakeReward()
     {
         GameManager.Instance.GetPlayer().PlayerGetReward(rewardStatus);
+        GameManager.Instance.RewardSelect();
     }
 
 }
