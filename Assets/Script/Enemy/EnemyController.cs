@@ -20,17 +20,22 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;
 
+    private PlayerController player;
+
+    public float speed;
+
     [SerializeField]
     private EnemyType type;
 
     private void Awake()
     {
-        navAgent = GetComponent<NavMeshAgent>();
+        //navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         SetVital();
-
-        navAgent.updateRotation = false;
+        SetSpeed();
+        //navAgent.updateRotation = false;
         anim.SetBool("isMoving", true);
+        player = GameManager.Instance.GetPlayer();
     }
 
     private void SetVital()
@@ -52,13 +57,40 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void SetSpeed()
+    {
+        switch (type)
+        {
+            case EnemyType.A:
+                speed = 3.5f;
+                break;
+            case EnemyType.B:
+                speed = 2f;
+                break;
+            case EnemyType.C:
+                speed = 1f;
+                break;
+            case EnemyType.D:
+                speed = 5f;
+                break;
+        }
+
+    }
+
     private void LateUpdate()
     {
-        navAgent.SetDestination(GameManager.Instance.GetPlayer().transform.position);
-        Vector3 tempVec = (transform.position - GameManager.Instance.GetPlayer().transform.position).normalized;
-        Vector3 dir = new Vector3(tempVec.x, 0f, tempVec.z);
-        transform.forward = -dir;
-            
+        //navAgent.SetDestination(GameManager.Instance.GetPlayer().transform.position);
+        //Vector3 tempVec = (transform.position - GameManager.Instance.GetPlayer().transform.position).normalized;
+        //Vector3 dir = new Vector3(tempVec.x, 0f, tempVec.z);
+        //transform.forward = -dir;
+        MoveEnemy();
+    }
+
+    private void MoveEnemy()
+    {
+        Vector3 dir = (player.gameObject.transform.position - transform.position).normalized;
+        transform.position += new Vector3(dir.x, 0f, dir.z) * speed * Time.deltaTime;
+        transform.forward = dir;
     }
 
     public void GetDamaged(int damage)

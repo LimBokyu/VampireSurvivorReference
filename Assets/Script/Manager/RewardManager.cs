@@ -128,7 +128,7 @@ public class RewardManager : MonoBehaviour
                 }
 
                 int random = Random.Range(0, list.Count);
-
+                Debug.Log(index);
                 rewards[index] = list[random];
             }
 

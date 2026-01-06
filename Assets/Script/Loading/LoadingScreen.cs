@@ -19,7 +19,7 @@ public class LoadingScreen : MonoBehaviour
 
     private AsyncOperation operation;
 
-    private YieldInstruction waitAnimation = new WaitForSeconds(0.3f);
+    private CustomYieldInstruction waitAnimation = new WaitForSecondsRealtime(0.3f);
     private CustomYieldInstruction loadComplete;
     private CustomYieldInstruction progressUpdatePeriod = new WaitForSecondsRealtime(0.05f);
     private Coroutine loadScene = null;

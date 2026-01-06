@@ -97,7 +97,12 @@ public class PlayerAutoAttack : MonoBehaviour
 
     private void AutoFire()
     {
-        if(inRange && !inCoolTime)
+        if(!inRange && !inCoolTime)
+        {
+            shootDir = transform.forward;
+            Shoot();
+        }
+        else if(inRange && !inCoolTime)
         {
             Shoot();
         }

@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private bool banControl = false;
 
+    [SerializeField]
+    private PlayerVital vital;
+
     [Space]
     [SerializeField] private int exp;
     [SerializeField] private int level;

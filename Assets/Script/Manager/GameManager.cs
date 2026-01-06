@@ -17,14 +17,23 @@ public class GameManager : MonoBehaviour
     private OptionManager optionManager;
 
     [SerializeField]
+    private SoundManager soundManager;
+
+    [SerializeField]
     private GameObject levelUpUI;
+
+    [SerializeField]
+    private LoadingScreen loadingScreen;
 
     [SerializeField]
     private RewardList rewardList;
 
+    [SerializeField]
+    private GameObject quitBox;
+
     private int round = 1;
 
-    private int[] killCounts = new int[] { 0,0,0,0 };
+    private int[] killCounts = new int[] { 0, 0, 0, 0 };
 
     private void Awake()
     {
@@ -49,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             optionManager.ShowOptions();
         }
@@ -65,9 +74,34 @@ public class GameManager : MonoBehaviour
         this.player = player;
     }
 
+    public void SetSFXVolume()
+    {
+        soundManager.SetSFXVolumeValue();
+    }
+
+    public void StartGameButtonClicked()
+    {
+        loadingScreen.StartLoading();
+    }
+
     public PlayerController GetPlayer()
     {
         return player;
+    }
+
+    public OptionManager GetOptionManager()
+    {
+        return optionManager;
+    }
+
+    public void ClickedExitButton()
+    {
+        quitBox.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     public void SetLevelUpUI(GameObject obj)
@@ -122,4 +156,11 @@ public class GameManager : MonoBehaviour
     {
         killCounts[typeNum]++;
     }
+
+    public SoundManager GetSoundManager()
+    {
+        return soundManager;
+    }
+
+    
 }
