@@ -24,6 +24,8 @@ public class EnemyController : MonoBehaviour
 
     public float speed;
 
+    private int damage;
+
     [SerializeField]
     private EnemyType type;
 
@@ -31,50 +33,39 @@ public class EnemyController : MonoBehaviour
     {
         //navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        SetVital();
-        SetSpeed();
+        SetEnemyValue();
         //navAgent.updateRotation = false;
         anim.SetBool("isMoving", true);
         player = GameManager.Instance.GetPlayer();
     }
 
-    private void SetVital()
+    private void SetEnemyValue()
     {
         switch (type)
         {
             case EnemyType.A:
                 enemyVital = 10 + (GameManager.Instance.GetRound() * 5);
+                speed = 3.5f;
+                damage = (20 + GameManager.Instance.GetRound() * 4);
                 break;
             case EnemyType.B:
                 enemyVital = 15 + (GameManager.Instance.GetRound() * 8);
+                speed = 2f;
+                damage = (30 + GameManager.Instance.GetRound() * 6);
                 break;
             case EnemyType.C:
                 enemyVital = 30 + (GameManager.Instance.GetRound() * 10);
-                break;
-            case EnemyType.D:
-                enemyVital = (10 + (GameManager.Instance.GetRound() * 5))/2;
-                break;
-        }
-    }
-
-    private void SetSpeed()
-    {
-        switch (type)
-        {
-            case EnemyType.A:
-                speed = 3.5f;
-                break;
-            case EnemyType.B:
-                speed = 2f;
-                break;
-            case EnemyType.C:
                 speed = 1f;
+                damage = (50 + GameManager.Instance.GetRound() * 10);
                 break;
             case EnemyType.D:
+                enemyVital = (10 + (GameManager.Instance.GetRound() * 5)) / 2;
                 speed = 5f;
+                damage = (10 + GameManager.Instance.GetRound() * 2);
                 break;
         }
 
+        
     }
 
     private void LateUpdate()
@@ -98,18 +89,15 @@ public class EnemyController : MonoBehaviour
         enemyVital -= damage;
         if (enemyVital <= 0)
             Dead();
+    }
 
-        //log.Append("EnemyGetDamaged : ");
-        //log.Append(damage);
-        //log.Append(" -> CurrentEnemyVital : ");
-        //log.Append(enemyVital);
-        //Debug.Log(log);
-        //log.Clear();
+    public int GetAttackDamage()
+    {
+        return damage;
     }
 
     private void Dead()
     {
-        //Debug.Log("Enemy Dead");
         int random = Random.Range(0, 10);
         Vector3 dropPoint = new Vector3(transform.position.x, 1f, transform.position.z);
         if (random <= 8)

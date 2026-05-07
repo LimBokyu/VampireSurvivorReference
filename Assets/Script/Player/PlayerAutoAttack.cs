@@ -64,8 +64,6 @@ public class PlayerAutoAttack : MonoBehaviour
     {
         Collider[] col = Physics.OverlapSphere(transform.position, shootRange, enemyMask);
 
-        Debug.Log(col.Length);
-
         if (col.Length == 0)
         {
             shootDir = Vector3.zero;

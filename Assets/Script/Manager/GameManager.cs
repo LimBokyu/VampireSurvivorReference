@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+
+    }
+
     public void SetTimeManager(TimeManager timeManager)
     {
         this.timeManager = timeManager;

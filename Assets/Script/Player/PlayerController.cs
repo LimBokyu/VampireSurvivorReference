@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigid;
     private Animator anim;
     private bool banControl = false;
+    
 
     [SerializeField]
     private PlayerVital vital;
