@@ -25,9 +25,11 @@ public class PlayerVital : MonoBehaviour
 
     private Coroutine InvincibilityCoroutine = null;
 
+    private HitFlash flash;
 
     private void Awake()
     {
+        flash = GetComponent<HitFlash>();
         SettingDefaultHP();
     }
 
@@ -95,7 +97,8 @@ public class PlayerVital : MonoBehaviour
         {
             invincible = true;
             PlayerGetDamaged(ec.GetAttackDamage());
-            Debug.Log("Player Get Damaged!");
+            flash.Flash();
+            //Debug.Log("Player Get Damaged!");
             if (InvincibilityCoroutine == null)
             {
                 InvincibilityCoroutine = StartCoroutine(InvinsibleCoroutine());

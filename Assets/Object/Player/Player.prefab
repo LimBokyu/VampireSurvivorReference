@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2996340314967954705}
   - component: {fileID: 2996340314967954703}
   - component: {fileID: 2996340314967954701}
+  - component: {fileID: 1609872877915991095}
   - component: {fileID: 2996340314967954702}
   m_Layer: 10
   m_Name: Player
@@ -90,7 +91,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBarSlider: {fileID: 0}
+  playerHP: 0
+  invincibleTimer: 0.5
   playerController: {fileID: 0}
+--- !u!114 &1609872877915991095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2996340314967954707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407c69dae6a24334abdc0041227edc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  rend: []
+  flashTime: 0.1
 --- !u!143 &2996340314967954702
 CharacterController:
   m_ObjectHideFlags: 0
