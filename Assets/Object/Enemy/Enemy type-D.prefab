@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7334941523166904776}
   - component: {fileID: 7334941523166904774}
   - component: {fileID: 7334941523166904775}
+  - component: {fileID: -3680940534693227278}
   m_Layer: 9
   m_Name: Enemy type-D
   m_TagString: Untagged
@@ -71,6 +72,21 @@ MonoBehaviour:
   expObject: {fileID: 4547147514856955720, guid: 8915457c87077cb4bb705709d94fc5a8, type: 3}
   speed: 0
   type: 0
+--- !u!114 &-3680940534693227278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334941523166904779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407c69dae6a24334abdc0041227edc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  rend: []
+  flashTime: 0.1
 --- !u!1001 &1664502553677706679
 PrefabInstance:
   m_ObjectHideFlags: 0

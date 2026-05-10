@@ -26,6 +26,8 @@ public class EnemyController : MonoBehaviour
 
     private int damage;
 
+    private HitFlash flash;
+
     [SerializeField]
     private EnemyType type;
 
@@ -36,6 +38,7 @@ public class EnemyController : MonoBehaviour
         SetEnemyValue();
         //navAgent.updateRotation = false;
         anim.SetBool("isMoving", true);
+        flash = GetComponent<HitFlash>();
         player = GameManager.Instance.GetPlayer();
     }
 
@@ -89,6 +92,10 @@ public class EnemyController : MonoBehaviour
         enemyVital -= damage;
         if (enemyVital <= 0)
             Dead();
+
+        Debug.Log("Damaged");
+        flash.Flash();
+
     }
 
     public int GetAttackDamage()
