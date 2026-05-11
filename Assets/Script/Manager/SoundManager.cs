@@ -32,8 +32,25 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private Toggle bgmMute;
 
+    static private SoundManager instance;
+
+    public SoundManager Instance
+    {
+        get { return instance; }
+
+    }
+
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         soundEffects = new List<AudioSource>();
         backGroundMusic = new List<AudioSource>();
     }
