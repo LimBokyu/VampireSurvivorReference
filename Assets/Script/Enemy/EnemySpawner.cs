@@ -20,6 +20,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemyD;
 
+    [SerializeField]
+    private EnemyPool pool;
+
     private List<GameObject> enemyList = new List<GameObject>();
 
     private Coroutine spawnCoroutine;
@@ -29,6 +32,8 @@ public class EnemySpawner : MonoBehaviour
 
     private int spawnCount = 0;
     private int spawnType = 0;
+
+    private int spawnPointNumber = 0;
 
     private void Awake()
     {
@@ -60,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        int random = Random.Range(0, 4);
+        //int random = Random.Range(0, 4);
 
         //sb.Append("EnemySpawn : ");
         //sb.Append(random);
@@ -76,9 +81,19 @@ public class EnemySpawner : MonoBehaviour
             if (spawnType >= 4)
                 spawnType = 0;
         }
+        
+        if(spawnPointNumber >= 4)
+        {
+            spawnPointNumber = 0;
+        }
+
+        GameObject enemy = pool.GetPoolObject(spawnType);
+        enemy.transform.position = spawnPoint[spawnPointNumber].transform.position;
 
         spawnCount++;
-        Instantiate(enemyList[spawnType], spawnPoint[random].transform.position, Quaternion.identity);
+        spawnPointNumber++;
+
+        //Instantiate(enemyList[spawnType], spawnPoint[random].transform.position, Quaternion.identity);
     }
 
     private IEnumerator EnemySpawn()

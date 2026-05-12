@@ -23,6 +23,7 @@ public class BulletPool : MonoBehaviour
         {
             GameObject go = Instantiate(bullet);
             bulletList.Add(go);
+            go.GetComponent<Bullet>().SettingPool(this);
             go.SetActive(false);
         }
     }
@@ -40,6 +41,7 @@ public class BulletPool : MonoBehaviour
 
         GameObject go = Instantiate(bullet);
         bulletList.Add(go);
+        go.GetComponent<Bullet>().SettingPool(this);
         return go;
     }
 

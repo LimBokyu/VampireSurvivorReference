@@ -6,31 +6,40 @@ public class Bullet : MonoBehaviour
 {
     private int pierceCount;
     private int damage;
-    private float speed;
 
-    private void Awake()
+    [SerializeField]
+    private float speed = 10;
+
+    private BulletPool pool;
+
+    private Vector3 moveDir;
+
+    public void Initialize(int pierce, int damage)
     {
-        damage = GameManager.Instance.GetPlayer().GetPlayerAttackDamage();
-        pierceCount = GameManager.Instance.GetPlayer().GetPlayerPierceCount();
-        speed = 10f;
+        this.damage = damage;
+        pierceCount = pierce;
     }
 
     public void SetDirection(Vector3 dir)
     {
-        transform.forward = dir;
-        //Debug.Log(dir);
+        moveDir = dir;
+    }
+
+    public void SettingPool(BulletPool pool)
+    {
+        this.pool = pool;
     }
 
     private void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += moveDir * speed * Time.deltaTime;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Wall"))
-            Destroy(gameObject);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            pool.ReturnObject(gameObject);
 
         if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -44,7 +53,9 @@ public class Bullet : MonoBehaviour
 
             if (pierceCount == 0)
             {
-                Destroy(this.gameObject);
+                //오브젝트 풀 이전의 코드
+                //Destroy(this.gameObject);
+                pool.ReturnObject(gameObject);
             }
             else
                 pierceCount--;

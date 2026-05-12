@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expObject: {fileID: 4547147514856955720, guid: 8915457c87077cb4bb705709d94fc5a8, type: 3}
   speed: 0
+  flash: {fileID: -6179366019321458593, guid: ba3c45e7876f80742957eb2148f290db, type: 3}
   type: 2
 --- !u!114 &2892460074619593495
 MonoBehaviour:

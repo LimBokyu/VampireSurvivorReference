@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2996340314967954703}
   - component: {fileID: 2996340314967954701}
   - component: {fileID: 1609872877915991095}
+  - component: {fileID: 7971509752077029760}
   - component: {fileID: 2996340314967954702}
   m_Layer: 10
   m_Name: Player
@@ -76,8 +77,8 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 512
-  bulletObject: {fileID: 6539287471709978558, guid: 759f8094cfa3aab458e26c5e89f5ba99, type: 3}
   controller: {fileID: 0}
+  pool: {fileID: 7971509752077029760}
 --- !u!114 &2996340314967954701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +110,20 @@ MonoBehaviour:
   type: 0
   rend: []
   flashTime: 0.1
+--- !u!114 &7971509752077029760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2996340314967954707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e832b67c0d3a9fd49af02caf2127e900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listSize: 10
+  bullet: {fileID: 6539287471709978558, guid: 759f8094cfa3aab458e26c5e89f5ba99, type: 3}
 --- !u!143 &2996340314967954702
 CharacterController:
   m_ObjectHideFlags: 0

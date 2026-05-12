@@ -10,6 +10,7 @@ enum EnemyType { A, B, C, D }
 public class EnemyController : MonoBehaviour
 {
     private NavMeshAgent navAgent;
+    private EnemyPool pool;
 
     private int enemyVital;
 
@@ -26,19 +27,23 @@ public class EnemyController : MonoBehaviour
 
     private int damage;
 
+    [SerializeField]
     private HitFlash flash;
 
     [SerializeField]
     private EnemyType type;
 
-    private void Awake()
+    private void OnEnable()
     {
-        //navAgent = GetComponent<NavMeshAgent>();
+        SetEnemyValue();
+        SettingDefault();
+    }
+
+    private void SettingDefault()
+    {
         anim = GetComponentInChildren<Animator>();
         SetEnemyValue();
-        //navAgent.updateRotation = false;
         anim.SetBool("isMoving", true);
-        flash = GetComponent<HitFlash>();
         player = GameManager.Instance.GetPlayer();
     }
 
@@ -68,7 +73,6 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
-        
     }
 
     private void LateUpdate()
@@ -91,16 +95,23 @@ public class EnemyController : MonoBehaviour
     {
         enemyVital -= damage;
         if (enemyVital <= 0)
+        {
             Dead();
-
-        Debug.Log("Damaged");
-        flash.Flash();
-
+        }
+        else
+        {
+            flash.Flash();
+        }
     }
 
     public int GetAttackDamage()
     {
         return damage;
+    }
+
+    public void SettingEnemyPool(EnemyPool pool)
+    {
+        this.pool = pool;
     }
 
     private void Dead()
@@ -112,7 +123,8 @@ public class EnemyController : MonoBehaviour
             Instantiate(expObject, dropPoint, transform.rotation);
         }
 
-        Destroy(gameObject);
+        pool.ReturnPoolObject(gameObject);
+        //Destroy(gameObject);
     }
 
 }

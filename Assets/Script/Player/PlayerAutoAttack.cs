@@ -8,7 +8,6 @@ public class PlayerAutoAttack : MonoBehaviour
     [SerializeField]
     private float autoFireTimer = 1f;
 
-
     private float coolTime = 0f;
 
     private bool inRange = false;
@@ -19,13 +18,13 @@ public class PlayerAutoAttack : MonoBehaviour
     [SerializeField]
     private LayerMask enemyMask;
 
-    [SerializeField]
-    private GameObject bulletObject;
-
     private Vector3 shootDir = Vector3.zero;
 
     [SerializeField]
     private PlayerController controller;
+
+    [SerializeField]
+    private BulletPool pool;
 
     private void Awake()
     {
@@ -50,8 +49,14 @@ public class PlayerAutoAttack : MonoBehaviour
 
             Vector3 dir = (col[0].transform.position - transform.position).normalized;
 
-            GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
-            bullet.transform.forward = dir;
+            // 오브젝트 풀 이전의 코드
+            //GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
+            //bullet.transform.forward = dir;
+
+            GameObject bullet = pool.GetPoolObject();
+            bullet.transform.position = gameObject.transform.position;
+            bullet.GetComponent<Bullet>().SetDirection(dir);
+            bullet.GetComponent<Bullet>().Initialize(controller.GetPlayerPierceCount(),controller.GetPlayerAttackDamage());
         }
     }
 
@@ -118,9 +123,14 @@ public class PlayerAutoAttack : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
+        //오브젝트 풀 이전의 코드
+        //GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
+        //bullet.transform.forward = shootDir;
 
-        bullet.transform.forward = shootDir;
+        GameObject bullet = pool.GetPoolObject();
+        bullet.transform.position = gameObject.transform.position;
+        bullet.GetComponent<Bullet>().SetDirection(shootDir);
+        bullet.GetComponent<Bullet>().Initialize(controller.GetPlayerPierceCount(), controller.GetPlayerAttackDamage());
         inCoolTime = true;
     }
 

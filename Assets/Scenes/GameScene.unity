@@ -5217,6 +5217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682039427}
   - component: {fileID: 1682039428}
+  - component: {fileID: 1682039429}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -5264,6 +5265,25 @@ MonoBehaviour:
   enemyB: {fileID: 7334941523166904779, guid: ebf38c08184dbc9428db83618eb5af6c, type: 3}
   enemyC: {fileID: 7334941523166904779, guid: 98a1c1e83c650e943b24e82a689d96ec, type: 3}
   enemyD: {fileID: 7334941523166904779, guid: 623b8d689d3bb264ebc7fb696a1f8312, type: 3}
+  pool: {fileID: 1682039429}
+--- !u!114 &1682039429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682039426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785bca3b3bfb4f44e8803bef497b37ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy1: {fileID: 7334941523166904779, guid: ba3c45e7876f80742957eb2148f290db, type: 3}
+  enemy2: {fileID: 7334941523166904779, guid: ebf38c08184dbc9428db83618eb5af6c, type: 3}
+  enemy3: {fileID: 7334941523166904779, guid: 98a1c1e83c650e943b24e82a689d96ec, type: 3}
+  enemy4: {fileID: 7334941523166904779, guid: 623b8d689d3bb264ebc7fb696a1f8312, type: 3}
+  poolParent: {fileID: 1682039427}
+  listSize: 20
 --- !u!1 &1690465624
 GameObject:
   m_ObjectHideFlags: 0

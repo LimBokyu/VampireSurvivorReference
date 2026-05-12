@@ -39,6 +39,7 @@ public class EnemyPool : MonoBehaviour
         {
             GameObject enemy = Instantiate(go, gameObject.transform);
             list.Add(enemy);
+            enemy.GetComponent<EnemyController>().SettingEnemyPool(this);
             enemy.SetActive(false);
         }
     }
@@ -83,6 +84,7 @@ public class EnemyPool : MonoBehaviour
         }
 
         GameObject newObj = Instantiate(poolObject);
+        newObj.GetComponent<EnemyController>().SettingEnemyPool(this);
         pool.Add(newObj);
 
         return newObj;
