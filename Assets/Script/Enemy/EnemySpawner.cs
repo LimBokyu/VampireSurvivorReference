@@ -65,14 +65,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        //int random = Random.Range(0, 4);
-
-        //sb.Append("EnemySpawn : ");
-        //sb.Append(random);
-        //sb.Append("Point");
-        //Debug.Log(sb);
-        //sb.Clear();
-
         if(spawnCount >= 40)
         {
             spawnCount = 0;
@@ -93,7 +85,6 @@ public class EnemySpawner : MonoBehaviour
         spawnCount++;
         spawnPointNumber++;
 
-        //Instantiate(enemyList[spawnType], spawnPoint[random].transform.position, Quaternion.identity);
     }
 
     private IEnumerator EnemySpawn()

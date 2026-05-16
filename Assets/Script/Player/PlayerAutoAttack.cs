@@ -49,10 +49,6 @@ public class PlayerAutoAttack : MonoBehaviour
 
             Vector3 dir = (col[0].transform.position - transform.position).normalized;
 
-            // 오브젝트 풀 이전의 코드
-            //GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
-            //bullet.transform.forward = dir;
-
             GameObject bullet = pool.GetPoolObject();
             bullet.transform.position = gameObject.transform.position;
             bullet.GetComponent<Bullet>().SetDirection(dir);
@@ -123,10 +119,6 @@ public class PlayerAutoAttack : MonoBehaviour
 
     private void Shoot()
     {
-        //오브젝트 풀 이전의 코드
-        //GameObject bullet = Instantiate(bulletObject, transform.position, transform.rotation);
-        //bullet.transform.forward = shootDir;
-
         GameObject bullet = pool.GetPoolObject();
         bullet.transform.position = gameObject.transform.position;
         bullet.GetComponent<Bullet>().SetDirection(shootDir);

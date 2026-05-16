@@ -46,15 +46,12 @@ public class Bullet : MonoBehaviour
             EnemyController ec = null;
             ec = other.gameObject.GetComponentInParent<EnemyController>();
 
-            //Debug.Log(ec);
             if(ec != null)
                 ec.GetDamaged(damage);
 
 
             if (pierceCount == 0)
             {
-                //오브젝트 풀 이전의 코드
-                //Destroy(this.gameObject);
                 pool.ReturnObject(gameObject);
             }
             else

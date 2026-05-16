@@ -64,10 +64,6 @@ public class EnemyController : MonoBehaviour
 
     private void LateUpdate()
     {
-        //navAgent.SetDestination(GameManager.Instance.GetPlayer().transform.position);
-        //Vector3 tempVec = (transform.position - GameManager.Instance.GetPlayer().transform.position).normalized;
-        //Vector3 dir = new Vector3(tempVec.x, 0f, tempVec.z);
-        //transform.forward = -dir;
         MoveEnemy();
     }
 
@@ -111,7 +107,6 @@ public class EnemyController : MonoBehaviour
         }
 
         pool.ReturnPoolObject(gameObject);
-        //Destroy(gameObject);
     }
 
 }
