@@ -6,9 +6,11 @@ using System.Text;
 using Unity.VisualScripting;
 using Cinemachine.Utility;
 
-enum EnemyType { A, B, C, D }
+public enum EnemyType { A, B, C, D }
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField]
+    private EnemyData enemyData;
     private NavMeshAgent navAgent;
     private EnemyPool pool;
 
@@ -49,30 +51,15 @@ public class EnemyController : MonoBehaviour
 
     private void SetEnemyValue()
     {
-        switch (type)
-        {
-            case EnemyType.A:
-                enemyVital = 10 + (GameManager.Instance.GetRound() * 5);
-                speed = 3.5f;
-                damage = (20 + GameManager.Instance.GetRound() * 4);
-                break;
-            case EnemyType.B:
-                enemyVital = 15 + (GameManager.Instance.GetRound() * 8);
-                speed = 2f;
-                damage = (30 + GameManager.Instance.GetRound() * 6);
-                break;
-            case EnemyType.C:
-                enemyVital = 30 + (GameManager.Instance.GetRound() * 10);
-                speed = 1f;
-                damage = (50 + GameManager.Instance.GetRound() * 10);
-                break;
-            case EnemyType.D:
-                enemyVital = (10 + (GameManager.Instance.GetRound() * 5)) / 2;
-                speed = 5f;
-                damage = (10 + GameManager.Instance.GetRound() * 2);
-                break;
-        }
+        enemyVital 
+            = enemyData.baseHP
+            + (GameManager.Instance.GetRound() * enemyData.HPPerRound);
 
+        damage 
+            = enemyData.baseDamage 
+            + (GameManager.Instance.GetRound() * enemyData.damagePerRound);
+
+        speed = enemyData.moveSpeed;
     }
 
     private void LateUpdate()

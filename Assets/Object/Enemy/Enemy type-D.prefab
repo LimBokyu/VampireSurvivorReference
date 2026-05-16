@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a89de941071e404797f216d52084e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 867a3022a82aa50449ea5f858eac0461, type: 2}
   expObject: {fileID: 4547147514856955720, guid: 8915457c87077cb4bb705709d94fc5a8, type: 3}
   speed: 0
   flash: {fileID: -6179366019321458593, guid: ba3c45e7876f80742957eb2148f290db, type: 3}
