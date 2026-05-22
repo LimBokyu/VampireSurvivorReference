@@ -7,9 +7,10 @@ public class SoundManager : MonoBehaviour
 {
     public enum SoundType { sfx, bgm }
 
-    private List<AudioSource> soundEffects;
-    private List<AudioSource> backGroundMusic;
-    private List<AudioSource> sources = new List<AudioSource>();
+    [SerializeField]
+    private AudioSource sfxSource;
+    [SerializeField]
+    private AudioSource bgmSource;
 
     private bool isMutedBGM = false;
     private bool isMutedSFX = false;
@@ -50,47 +51,16 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        soundEffects = new List<AudioSource>();
-        backGroundMusic = new List<AudioSource>();
     }
 
-    public void SetSFXMuted()
+    public void SetSFXMuted(bool value)
     {
-        isMutedSFX = sfxMute.isOn;
-        SetSFXVolumeValue();
+        isMutedSFX = value;
     }
 
-    public void SetBGMMuted()
+    public void SetBGMMuted(bool value)
     {
-        isMutedBGM = bgmMute.isOn;
-        SetBGMVolumeValue(0f);
-    }
-
-    public void AddSFX(AudioSource clip)
-    {
-        soundEffects.Add(clip);
-    }
-
-    public void AddBGM(AudioSource clip)
-    {
-        backGroundMusic.Add(clip);
-    }
-
-    public void SetSFXVolumeValue()
-    {
-        foreach (AudioSource audio in soundEffects)
-        {
-            audio.volume = isMutedSFX ? 0f : sfxSlider.value;
-        }
-    }
-
-    public void SetBGMVolumeValue(float value)
-    {
-        foreach (AudioSource audio in backGroundMusic)
-        {
-            audio.volume = isMutedBGM ? 0f : bgmSlider.value;
-        }
+        isMutedBGM = value;
     }
 
     public float ObjectSettingVolume(SoundType type)

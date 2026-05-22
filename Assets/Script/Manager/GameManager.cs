@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void SetSFXVolume()
     {
-        soundManager.SetSFXVolumeValue();
+        //soundManager.SetSFXVolumeValue();
     }
 
     public void StartGameButtonClicked()

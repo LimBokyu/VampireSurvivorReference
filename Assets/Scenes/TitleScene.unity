@@ -6011,7 +6011,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2133535545}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: SetBGMMuted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1731749175
 GameObject:
@@ -7833,6 +7845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53dc1cf54fa55e48992e284bdf88023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxSource: {fileID: 0}
+  bgmSource: {fileID: 0}
   sfxVolume: 0
   bgmVolume: 0
   sfxSlider: {fileID: 254944246}
@@ -7884,9 +7898,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1072142625}
     m_Modifications:
     - target: {fileID: 4012911635492619299, guid: 4c9b611f7988c6b4284f4e2c18d88695, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012911635492619299, guid: 4c9b611f7988c6b4284f4e2c18d88695, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2133535545}
+    - target: {fileID: 4012911635492619299, guid: 4c9b611f7988c6b4284f4e2c18d88695, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSFXMuted
+      objectReference: {fileID: 0}
     - target: {fileID: 4012911636717285658, guid: 4c9b611f7988c6b4284f4e2c18d88695, type: 3}
       propertyPath: m_Name
       value: SoundEffectOptions
