@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private float bgmVolume;
+
+    private AudioMixer audioMixer;
 
     [SerializeField]
     private Slider sfxSlider;
