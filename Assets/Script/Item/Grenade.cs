@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Grenade : Item
 {
+    [SerializeField]
+    private GameObject grenade;
+
+    int dirNum = 0;
+
     override public void StartAutoAttack()
     {
         switch (itemLevel)
@@ -28,12 +34,34 @@ public class Grenade : Item
 
     private void AttackLevel1()
     {
+        Vector3 attackDir;
+        switch (dirNum)
+        {
+            case 0:
+                attackDir = Vector3.forward;
+                break;
+            case 1:
+                attackDir = Vector3.right;
+                break;
+            case 2:
+                attackDir = Vector3.back;
+                break;
+            case 3:
+                attackDir = Vector3.left;
+                break;
+            default:
+                attackDir = Vector3.zero;
+                break;
+        }
 
+        GameObject go = Instantiate(grenade, this.transform.position, grenade.transform.rotation);
+        go.transform.forward = attackDir;
+        dirNum++;
     }
 
     private void AttackLevel2()
     {
-
+        
     }
 
     private void AttackLevel3()
