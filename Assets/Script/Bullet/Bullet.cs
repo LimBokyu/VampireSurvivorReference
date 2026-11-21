@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
 
     private Vector3 moveDir;
 
+    #region Bullet의 생성 후 방향, 관통력, 데미지, 오브젝트 풀 설정
+
     public void Initialize(int pierce, int damage)
     {
         this.damage = damage;
@@ -30,7 +32,14 @@ public class Bullet : MonoBehaviour
         this.pool = pool;
     }
 
+    #endregion
+
     private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         transform.position += moveDir * speed * Time.deltaTime;
     }
@@ -38,9 +47,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Wall 레이어마스크를 가진 오브젝트와 충돌 시 오브젝트 풀에 반환
         if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
             pool.ReturnObject(gameObject);
+        }
 
+        //Enemy 레이어마스크를 가진 오브젝트와 충돌 시
+        //EnemyComtroller 컴포넌트를 찾아 Bullet이 가진 Damage를 줌
         if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             EnemyController ec = null;

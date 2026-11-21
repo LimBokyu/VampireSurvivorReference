@@ -10,6 +10,11 @@ public class Grenade : Item
 
     int dirNum = 0;
 
+    public override void AutoAttack()
+    {
+        
+    }
+
     override public void StartAutoAttack()
     {
         switch (itemLevel)

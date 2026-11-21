@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
     protected int itemLevel = 0;
     private int maxItemLevel = 5;
-    private int currentLevel = 0;
     
     [SerializeField]
     private string itemName;
@@ -19,6 +19,16 @@ public class Item : MonoBehaviour
 
     }
 
+    virtual public void UpdateAutoAttack()
+    {
+
+    }
+
+    virtual public void AutoAttack()
+    {
+
+    }
+
     virtual public void StartAutoAttack()
     {
 
@@ -26,7 +36,7 @@ public class Item : MonoBehaviour
 
     public void LevelUp()
     {
-        if(currentLevel < maxItemLevel)
+        if(itemLevel < maxItemLevel)
         {
             itemLevel += 1;
         }
